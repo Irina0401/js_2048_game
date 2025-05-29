@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 'use strict';
 
 // Uncomment the next lines to use your game instance in the browser
