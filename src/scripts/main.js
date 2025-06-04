@@ -2,9 +2,10 @@
 'use strict';
 
 // Uncomment the next lines to use your game instance in the browser
-import Game from '../modules/Game.class.js';
+import Game from '../modules/Game.class';
 
 const size = 4;
+
 const field = document.querySelector('.game-field');
 const scoreEl = document.querySelector('.game-score');
 const statusEl = document.querySelector('.message-container');
@@ -71,4 +72,3 @@ button.addEventListener('click', () => {
 
 game.start();
 renderBoard();
-

@@ -1,12 +1,14 @@
 'use strict';
-
 class Game {
   constructor(initialState) {
     this.size = 4;
     this.score = 0;
     this.status = 'playing';
     this.board = initialState ? this.cloneBoard(initialState) : this.createEmptyBoard();
-    if (!initialState) this.addRandomTile();
+    if (!initialState) {
+      this.addRandomTile()
+      this.addRandomTile()
+    }
   }
 
   createEmptyBoard() {
@@ -33,6 +35,7 @@ class Game {
     this.board = this.createEmptyBoard();
     this.score = 0;
     this.status = 'playing';
+    this.addRandomTile();
     this.addRandomTile();
   }
 
