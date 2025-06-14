@@ -11,17 +11,21 @@ const scoreEl = document.querySelector('.game-score');
 const statusEl = document.querySelector('.message-container');
 const button = document.querySelector('.start');
 
-let game = new Game();
+const game = new Game();
 
 function renderBoard() {
   const state = game.getState();
+
   field.innerHTML = '';
 
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
       const cell = document.createElement('div');
+
       cell.classList.add('field-cell');
+
       const value = state[row][col];
+
       if (value) {
         cell.classList.add(`field-cell--${value}`);
         cell.textContent = value;
@@ -33,12 +37,16 @@ function renderBoard() {
   scoreEl.textContent = game.getScore();
 
   const status = game.getStatus();
-  statusEl.textContent = status === 'win' ? 'You win!' : status === 'lose' ? 'Game over' : '';
+
+  statusEl.textContent =
+    status === 'win' ? 'You win!' : status === 'lose' ? 'Game over' : '';
   statusEl.classList.toggle('hidden', status === 'playing');
 }
 
 function handleMove(direction) {
-  if (game.getStatus() !== 'playing') return;
+  if (game.getStatus() !== 'playing') {
+    return;
+  }
 
   const moved = {
     ArrowUp: () => game.moveUp(),
