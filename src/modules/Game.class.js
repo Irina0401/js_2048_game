@@ -42,10 +42,11 @@ class Game {
 
     this.addRandomTile();
 
-
     let placed = false;
+
     while (!placed) {
       const empty = [];
+
       for (let r = 0; r < this.size; r++) {
         for (let c = 0; c < this.size; c++) {
           if (this.board[r][c] === 0) {
@@ -56,12 +57,19 @@ class Game {
 
       const [r2, c2] = empty[Math.floor(Math.random() * empty.length)];
 
-
       const neighbors = [
-        [r2 - 1, c2], [r2 + 1, c2], [r2, c2 - 1], [r2, c2 + 1]
+        [r2 - 1, c2],
+        [r2 + 1, c2],
+        [r2, c2 - 1],
+        [r2, c2 + 1],
       ];
-      const isNeighborOccupied = neighbors.some(([r, c]) =>
-        r >= 0 && r < this.size && c >= 0 && c < this.size && this.board[r][c] !== 0
+      const isNeighborOccupied = neighbors.some(
+        ([r, c]) =>
+          r >= 0 &&
+          r < this.size &&
+          c >= 0 &&
+          c < this.size &&
+          this.board[r][c] !== 0,
       );
 
       if (!isNeighborOccupied) {
@@ -89,6 +97,7 @@ class Game {
   moveUp() {
     const transposed = this.transpose(this.board);
     const moved = this.move(transposed);
+
     if (moved) {
       this.board = this.transpose(transposed);
       this.addRandomTile();
@@ -97,10 +106,16 @@ class Game {
   }
 
   moveDown() {
-    const transposed = this.transpose(this.board).map(row => row.slice().reverse());
+    const transposed = this.transpose(this.board).map((row) => {
+      return row.slice().reverse();
+    });
+
     const moved = this.move(transposed);
+
     if (moved) {
-      this.board = this.transpose(transposed.map(row => row.slice().reverse()));
+      this.board = this.transpose(
+        transposed.map((row) => row.slice().reverse()),
+      );
       this.addRandomTile();
       this.updateStatus();
     }
@@ -119,7 +134,8 @@ class Game {
 
       row.splice(0, row.length, ...merged);
     }
-     return moved;
+
+    return moved;
 
     // if (moved) {
     //   this.addRandomTile();
