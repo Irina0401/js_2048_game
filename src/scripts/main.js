@@ -70,13 +70,22 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+let started = false;
+
 button.addEventListener('click', () => {
-  game.restart();
+  if (!started) {
+    game.start();
+    started = true;
+  } else {
+    game.restart();
+  }
+
   renderBoard();
-  button.classList.remove('restart');
-  button.classList.add('start');
-  button.textContent = 'Start';
+
+  button.classList.remove('start');
+  button.classList.add('restart');
+  button.textContent = 'Restart';
 });
 
-game.start();
-renderBoard();
+// game.start();
+// renderBoard();
