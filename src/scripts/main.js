@@ -6,7 +6,7 @@ import Game from '../modules/Game.class';
 
 const size = 4;
 
-const field = document.querySelector('.game-field');
+const field = document.querySelector('tbody');
 const scoreEl = document.querySelector('.game-score');
 const statusEl = document.querySelector('.message-container');
 const button = document.querySelector('.start');
@@ -19,19 +19,22 @@ function renderBoard() {
   field.innerHTML = '';
 
   for (let row = 0; row < size; row++) {
+    const rowEl = document.createElement('tr');
+
     for (let col = 0; col < size; col++) {
-      const cell = document.createElement('div');
+      const cell = document.createElement('td');
+      const value = state[row][col];
 
       cell.classList.add('field-cell');
 
-      const value = state[row][col];
 
       if (value) {
         cell.classList.add(`field-cell--${value}`);
         cell.textContent = value;
       }
-      field.appendChild(cell);
+      rowEl.appendChild(cell);
     }
+    field.appendChild(rowEl);
   }
 
   scoreEl.textContent = game.getScore();
