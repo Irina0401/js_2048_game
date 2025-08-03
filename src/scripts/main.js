@@ -27,7 +27,6 @@ function renderBoard() {
 
       cell.classList.add('field-cell');
 
-
       if (value) {
         cell.classList.add(`field-cell--${value}`);
         cell.textContent = value;
