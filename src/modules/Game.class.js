@@ -84,14 +84,22 @@ class Game {
   }
 
   moveLeft() {
-    this.move(this.board);
+    const moved = this.move(this.board);
+    if (moved) {
+      this.addRandomTile();
+      this.updateStatus();
+    }
   }
 
   moveRight() {
-    const reversed = this.board.map((row) => row.reverse());
+    const transposedReversed = this.board.map((row) => row.reverse());
+    const moved = this.move(transposedReversed);
 
-    this.move(reversed);
-    this.board = reversed.map((row) => row.reverse());
+    if (moved) {
+      this.board = transposedReversed.map((row) => row.reverse());
+      this.addRandomTile();
+      this.updateStatus();
+    }
   }
 
   moveUp() {
@@ -106,16 +114,11 @@ class Game {
   }
 
   moveDown() {
-    const transposed = this.transpose(this.board).map((row) => {
-      return row.slice().reverse();
-    });
-
-    const moved = this.move(transposed);
+    const transposedReversed = this.transpose(this.board).map(row => row.slice().reverse());
+    const moved = this.move(transposedReversed);
 
     if (moved) {
-      this.board = this.transpose(
-        transposed.map((row) => row.slice().reverse()),
-      );
+      this.board = this.transpose(transposedReversed.map(row => row.slice().reverse()));
       this.addRandomTile();
       this.updateStatus();
     }
