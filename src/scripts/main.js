@@ -89,5 +89,3 @@ button.addEventListener('click', () => {
   button.textContent = 'Restart';
 });
 
-// game.start();
-// renderBoard();
