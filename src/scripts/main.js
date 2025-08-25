@@ -46,7 +46,7 @@ function renderBoard() {
 }
 
 function handleMove(direction) {
-  if (game.getStatus() !== 'playing') {
+  if (game.getStatus() !== 'playing' || !started) {
     return;
   }
 

@@ -93,11 +93,11 @@ class Game {
   }
 
   moveRight() {
-    const transposedReversed = this.board.map((row) => row.reverse());
-    const moved = this.move(transposedReversed);
+    const reversed = this.board.map((row) => row.slice().reverse());
+    const moved = this.move(reversed);
 
     if (moved) {
-      this.board = transposedReversed.map((row) => row.reverse());
+      this.board = reversed.map((row) => row.slice().reverse());
       this.addRandomTile();
       this.updateStatus();
     }
@@ -116,7 +116,7 @@ class Game {
 
   moveDown() {
     const transposedReversed = this.transpose(this.board).map((row) =>
-      row.slice().reverse(),
+      row.slice().reverse()
     );
 
     const moved = this.move(transposedReversed);
